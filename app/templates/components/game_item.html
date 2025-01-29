@@ -4,9 +4,17 @@
       <div class="row align-items-center">
         <div class="col-5 text-end pe-4">
           <div class="position-relative">
-            <h2 class="{{ 'text-success' if game.player1_place < game.player2_place }}">
-              {{ game.player1_place }}
-            </h2>
+
+            <div class="my_row">
+              <img src="{{ url_for('static', filename='images/vano2.webp') }}"
+                   alt="Player 1 Emblem" class="emblem" width="50" height="30">
+
+              <h2 class="{{ 'text-success' if game.player1_place < game.player2_place }}" style="display: inline-block;">
+                {{ game.player1_place }}
+              </h2>
+            </div>
+
+
             <small class="text-muted d-block">{{ game.player1_hero }}</small>
             {% if game.player1_place < game.player2_place %}
               <i class="bi bi-trophy-fill text-warning position-absolute top-0 end-0"></i>

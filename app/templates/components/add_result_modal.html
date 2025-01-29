@@ -15,13 +15,11 @@
               <h5 class="text-center mb-3 text-primary">Иван-Компот</h5>
               <div class="mb-3">
                 <label class="form-label">Герой</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="p1_hero"
-                  required
-                  placeholder="Enter hero name"
-                >
+                <select class="form-select" name="p1_hero" required>
+                  {% for hero in hero_list %}
+                    <option value="{{ hero }}">{{ hero }}</option>
+                  {% endfor %}
+                </select>
               </div>
               <div class="mb-3">
                 <label class="form-label">Место</label>
@@ -38,13 +36,11 @@
               <h5 class="text-center mb-3 text-danger">Илюшенька <3 </h5>
               <div class="mb-3">
                 <label class="form-label">Герой</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="p2_hero"
-                  required
-                  placeholder="Enter hero name"
-                >
+                <select class="form-select" name="p2_hero" required>
+                  {% for hero in hero_list %}
+                    <option value="{{ hero }}">{{ hero }}</option>
+                  {% endfor %}
+                </select>
               </div>
               <div class="mb-3">
                 <label class="form-label">Место</label>

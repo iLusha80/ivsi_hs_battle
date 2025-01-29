@@ -35,10 +35,14 @@ def index():
         txt_score = '0'
         score_color = 'color:yellow'
 
+    with open('app/static/data/heroes.txt', 'r') as f:
+        hero_list = f.read().splitlines()
+
     return render_template('index.html',
                            games=games,
                            score=txt_score,
-                           score_color=score_color)
+                           score_color=score_color,
+                           hero_list=hero_list)
 
 
 @app.route('/add-game', methods=['POST'])
