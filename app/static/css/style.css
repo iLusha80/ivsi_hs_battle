@@ -1,0 +1,65 @@
+/* Модальное окно добавления результатов */
+#addResultModal .modal-header {
+  padding: 1.2rem;
+}
+
+#addResultModal .form-label {
+  font-weight: 500;
+}
+
+#addResultModal .border-end {
+  border-right: 2px solid #dee2e6 !important;
+}
+
+/* Карточки с результатами */
+.card {
+  transition: transform 0.2s;
+  border-radius: 12px;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.bi-trophy-fill {
+  font-size: 1.4rem;
+  margin-top: -0.5rem;
+}
+
+.vr {
+  width: 2px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(0,0,0,0.1) 50%,
+    transparent 100%);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  #addResultModal .border-end {
+    border-right: none !important;
+    border-bottom: 2px solid #dee2e6 !important;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .emblem {
+    max-width: 80px;
+  }
+
+  .score-display {
+    font-size: 2.5rem;
+  }
+}
+
+.arrow {
+        font-size: 24px; /* Размер стрелки */
+        line-height: 1; /* Выравнивание по вертикали */
+    }
+
+body {
+  background-color: #333; /* темно-синий */
+}
+
+/*.gameitem */
+

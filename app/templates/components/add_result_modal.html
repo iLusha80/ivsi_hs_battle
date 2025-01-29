@@ -1,0 +1,69 @@
+<div class="modal fade" id="addResultModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">
+          <i class="bi bi-plus-circle me-2">Новый результат</i>
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="POST" action="/add-game">
+        <div class="modal-body">
+          <div class="row g-3">
+            <!-- Player 1 Section -->
+            <div class="col-md-6 border-end">
+              <h5 class="text-center mb-3 text-primary">Иван-Компот</h5>
+              <div class="mb-3">
+                <label class="form-label">Герой</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="p1_hero"
+                  required
+                  placeholder="Enter hero name"
+                >
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Место</label>
+                <select class="form-select" name="p1_place" required >
+                  {% for n in range(1,9) %}
+                    <option value="{{ n }}">{{ n }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+
+            <!-- Player 2 Section -->
+            <div class="col-md-6">
+              <h5 class="text-center mb-3 text-danger">Илюшенька <3 </h5>
+              <div class="mb-3">
+                <label class="form-label">Герой</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="p2_hero"
+                  required
+                  placeholder="Enter hero name"
+                >
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Место</label>
+                <select class="form-select" name="p2_place" required>
+                  {% for n in range(1,9) %}
+                    <option value="{{ n }}">{{ n }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save me-2"></i>Добавить
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
