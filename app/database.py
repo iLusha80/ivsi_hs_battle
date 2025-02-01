@@ -21,7 +21,8 @@ def init_db(app):
                 player1_hero TEXT NOT NULL,
                 player1_place INTEGER NOT NULL,
                 player2_hero TEXT NOT NULL,
-                player2_place INTEGER NOT NULL
+                player2_place INTEGER NOT NULL,
+                fl_calculated BOOLEAN DEFAULT 0
             )
         ''')
         cursor.execute('''
@@ -30,4 +31,17 @@ def init_db(app):
                 password_hash TEXT NOT NULL
             )
         ''')
+        cursor.execute('''
+                       CREATE TABLE IF NOT EXISTS heroes (
+                        id INTEGER PRIMARY KEY,
+                        name TEXT NOT NULL,
+                        image_url TEXT DEFAULT NULL
+                        )
+                       ''')
+        cursor.execute('''
+                       CREATE TABLE IF NOT EXISTS unit_types (
+                        id INTEGER PRIMARY KEY,
+                        name TEXT NOT NULL
+                        )
+                       ''')
         db.commit()

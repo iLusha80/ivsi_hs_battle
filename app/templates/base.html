@@ -24,6 +24,20 @@
             <!-- Счет -->
             <div class="col-2 text-center">
                 <h1 class="score-display" style={{ score_color }}>{{ score }}</h1>
+                <!-- таблица из двух столбцов день score_за день формируется циклом из списка спсиков-->
+                {% for day, score, score_color in scores_5day %}
+                    <div class="score-table-row">
+                        <table class="table">
+                            <tr style={{ score_color }}>
+<!--                            <tr class = {{ score_color }} >-->
+                                <td>{{ day }}</td>
+                                <td>{{ score }}</td>
+                            </tr>
+                        </table>
+<!--                        <div class="score-table-cell">{{ day }}</div>-->
+<!--                        <div class="score-table-cell">{{ score }}</div>-->
+                    </div>
+                {% endfor %}
             </div>
 
             <!-- Колонка игрока 2 -->

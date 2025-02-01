@@ -25,6 +25,21 @@ def index():
         FROM games
     ''').fetchone()[0] or 0
 
+    scores_5day = cursor.execute('''
+    SELECT 
+        date(timestamp)                         as day,
+        -1*SUM(player1_place - player2_place)   as score,
+        CASE
+            WHEN SUM(player1_place - player2_place) < 0 THEN 'color:green'
+            WHEN SUM(player1_place - player2_place) > 0 THEN 'color:red'
+            ELSE 'color:yellow'
+        END score_color
+    FROM games 
+    GROUP BY date(timestamp)
+    ORDER BY timestamp DESC 
+    LIMIT 5
+    ''').fetchall()
+
     if total_score > 0:
         txt_score = f'-{total_score}'
         score_color = 'color:red'
@@ -42,7 +57,8 @@ def index():
                            games=games,
                            score=txt_score,
                            score_color=score_color,
-                           hero_list=hero_list)
+                           hero_list=hero_list,
+                           scores_5day=scores_5day)
 
 
 @app.route('/add-game', methods=['POST'])
