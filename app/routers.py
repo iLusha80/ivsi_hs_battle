@@ -3,6 +3,9 @@ from flask import render_template, request, redirect, session, jsonify
 from .database import get_db
 from . import app
 from .services.search import super_search
+from config import load_config
+
+config = load_config()
 
 
 @app.route('/')
@@ -106,7 +109,7 @@ def add_game():
 
 @app.route('/login', methods=['POST'])
 def login():
-    if request.form.get('password') == 'admin123':
+    if request.form.get('password') == config.admin_password:
         session['logged_in'] = True
     return redirect('/')
 
