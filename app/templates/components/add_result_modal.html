@@ -10,47 +10,35 @@
       <form method="POST" action="/add-game">
         <div class="modal-body">
           <div class="row g-3">
-            <!-- Player 1 Section -->
-            <div class="col-md-6 border-end">
-              <h5 class="text-center mb-3 text-primary">Иван-Компот</h5>
-              <div class="mb-3">
-                <label class="form-label">Герой</label>
-                <select class="form-select" name="p1_hero" required>
-                  {% for hero in hero_list %}
-                    <option value="{{ hero }}">{{ hero }}</option>
-                  {% endfor %}
-                </select>
+            {% for i, (player, color) in [(1, ('Иван-Компот', 'text-primary')), (2, ('Илюшенька <3', 'text-danger'))] %}
+              <div class="col-md-6 {% if i == 1 %}border-end{% endif %}">
+                <h5 class="text-center mb-3 {{ color }}">{{ player }}</h5>
+                <div class="mb-3">
+                  <label class="form-label">Герой</label>
+                  <select class="form-select" name="p{{ i }}_hero" required>
+                    {% for hero in hero_list %}
+                      <option value="{{ hero }}">{{ hero }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Тип Существ</label>
+                  <select class="form-select" name="p{{ i }}_unit_type" required>
+                    {% for id, unit_type in unit_types %}
+                      <option value="{{ id }}">{{ unit_type }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Место</label>
+                  <select class="form-select" name="p{{ i }}_place" required>
+                    {% for n in range(1,9) %}
+                      <option value="{{ n }}">{{ n }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
               </div>
-              <div class="mb-3">
-                <label class="form-label">Место</label>
-                <select class="form-select" name="p1_place" required >
-                  {% for n in range(1,9) %}
-                    <option value="{{ n }}">{{ n }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-
-            <!-- Player 2 Section -->
-            <div class="col-md-6">
-              <h5 class="text-center mb-3 text-danger">Илюшенька <3 </h5>
-              <div class="mb-3">
-                <label class="form-label">Герой</label>
-                <select class="form-select" name="p2_hero" required>
-                  {% for hero in hero_list %}
-                    <option value="{{ hero }}">{{ hero }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Место</label>
-                <select class="form-select" name="p2_place" required>
-                  {% for n in range(1,9) %}
-                    <option value="{{ n }}">{{ n }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
         <div class="modal-footer">
