@@ -104,3 +104,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect('/')
+
+@app.route('/tests')
+def tests():
+    return render_template('tests.html')
