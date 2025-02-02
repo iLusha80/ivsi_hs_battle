@@ -1,12 +1,18 @@
-from flask import Flask
 from datetime import datetime
 
-from .database import init_db
-from ..config import load_config
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+from config import load_config
 
 config = load_config()
+
 app = Flask(__name__)
-app.secret_key = config.SECRET_KEY
+app.config.from_object(config)
+
+db = SQLAlchemy(app)
+
+# app.secret_key = config.SECRET_KEY
 
 # Добавляем фильтр для форматирования даты
 @app.template_filter('datetimeformat')
@@ -21,6 +27,7 @@ def datetimeformat_filter(value, format='%d.%m.%Y %H:%M'):
 
 # Инициализация БД
 with app.app_context():
-    init_db(app)
+    db.create_all()
 
-from .routers import *  #← Импорт маршрутов после создания app
+from .routers import register_routes #← Импорт маршрутов после создания app
+register_routes(app)

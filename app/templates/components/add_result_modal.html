@@ -17,22 +17,22 @@
                   <label class="form-label">Герой</label>
                   <select class="form-select" name="p{{ i }}_hero" required>
                     {% for hero in hero_list %}
-                      <option value="{{ hero }}">{{ hero }}</option>
+                      <option value="{{ hero.id }}">{{ hero.name }}</option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Тип Существ</label>
                   <select class="form-select" name="p{{ i }}_unit_type" required>
-                    {% for id, unit_type in unit_types %}
-                      <option value="{{ id }}">{{ unit_type }}</option>
+                    {% for unit_type in unit_types %}
+                      <option value="{{ unit_type.id }}">{{ unit_type.name }}</option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Место</label>
                   <select class="form-select" name="p{{ i }}_place" required>
-                    {% for n in range(1,9) %}
+                    {% for n in range(1, 9) %}
                       <option value="{{ n }}">{{ n }}</option>
                     {% endfor %}
                   </select>

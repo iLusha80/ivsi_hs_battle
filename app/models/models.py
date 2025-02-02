@@ -20,7 +20,8 @@ class UnitType(db.Model):
 class Game(db.Model):
     __tablename__ = 'games'
     id = db.Column(db.Integer, primary_key=True)
-    timestamp = db.Column(db.DateTime, nullable=False)
+    # исправь добавь за значение по умочанию текущее время
+    timestamp = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
     player1_hero_id = db.Column(db.Integer, db.ForeignKey('heroes.id'))
     player1_place = db.Column(db.Integer, nullable=False)
     player1_unit_type_id = db.Column(db.Integer, db.ForeignKey('unit_types.id'))
