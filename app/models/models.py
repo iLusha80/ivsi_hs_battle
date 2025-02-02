@@ -1,27 +1,43 @@
-from dataclasses import dataclass
-from datetime import datetime
+from app import db
 
+class Hero(db.Model):
+    __tablename__ = 'heroes'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+    image_url = db.Column(db.String(256))
 
-@dataclass
-class Hero:
-    id: int
-    name: str
-    image_url: str
+    def __repr__(self):
+        return f'<Hero {self.name}>'
 
+class UnitType(db.Model):
+    __tablename__ = 'unit_types'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
 
-@dataclass
-class UnitType:
-    id: int
-    name: str
+    def __repr__(self):
+        return f'<id {self.id} UnitType {self.name}>'
 
-@dataclass
-class Game:
-    id: int
-    timestamp: datetime
-    player1_hero: Hero
-    player1_place: int
-    player1_unit_type: UnitType
-    player2_hero: Hero
-    player2_place: int
-    player2_unit_type: UnitType
-    fl_calculated: int = 0
+class Game(db.Model):
+    __tablename__ = 'games'
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, nullable=False)
+    player1_hero_id = db.Column(db.Integer, db.ForeignKey('heroes.id'))
+    player1_place = db.Column(db.Integer, nullable=False)
+    player1_unit_type_id = db.Column(db.Integer, db.ForeignKey('unit_types.id'))
+    player2_hero_id = db.Column(db.Integer, db.ForeignKey('heroes.id'))
+    player2_place = db.Column(db.Integer, nullable=False)
+    player2_unit_type_id = db.Column(db.Integer, db.ForeignKey('unit_types.id'), default=1)
+    fl_calculated = db.Column(db.Boolean, default=False)
+
+    player1_hero = db.relationship('Hero', foreign_keys=[player1_hero_id])
+    player2_hero = db.relationship('Hero', foreign_keys=[player2_hero_id])
+    player1_unit_type = db.relationship('UnitType', foreign_keys=[player1_unit_type_id])
+    player2_unit_type = db.relationship('UnitType', foreign_keys=[player2_unit_type_id])
+
+    def __repr__(self):
+        txt = f"""<Game {self.id} ({self.timestamp}
+        - Calculated: {self.fl_calculated})
+        Player 1: {self.player1_hero.name} ({self.player1_place}), {self.player1_unit_type.name}
+        Player 2: {self.player2_hero.name} ({self.player2_place}), {self.player2_unit_type.name})>
+        """
+        return txt
