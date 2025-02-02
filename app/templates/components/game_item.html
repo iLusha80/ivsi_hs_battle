@@ -2,44 +2,72 @@
   <div class="card mb-3 shadow-sm">
     <div class="card-body">
       <div class="row align-items-center">
+        <!-- Player 1 -->
         <div class="col-5 text-end pe-4">
           <div class="position-relative">
+            <!-- Hero Image -->
+            <img src="{{ url_for('static', filename=game.player1_hero.image_url) }}" alt="{{ game.player1_hero.name }}"
+                 class="img-thumbnail mb-2" style="width: 120px; height: 120px;"
+            >
 
-            <div class="my_row">
+            <!-- Player Place -->
+            <h2 class="{{ 'text-success' if game.player1_place < game.player2_place }}" style="display: inline-block;">
+              {{ game.player1_place }}
+            </h2>
 
-              <h2 class="{{ 'text-success' if game.player1_place < game.player2_place }}" style="display: inline-block;">
-                {{ game.player1_place }}
-              </h2>
-            </div>
-
+            <!-- Hero Name -->
             <small class="text-muted d-block">
               {{ game.player1_hero.name }}
             </small>
-              <!--Нар-->
+
+            <!-- Unit Type Image game.player1_unit_type.image_url-->
+            <img src="{{ url_for('static', filename=game.player1_unit_type.image_url) }}" alt="{{ game.player1_unit_type.name }}"
+                 class="img-thumbnail mt-2" style="width: 120px; height: 120px;"
+            >
+
+            <!-- Unit Type Name -->
             <small class="text-muted d-block">
               {{ game.player1_unit_type.name }}
             </small>
           </div>
         </div>
 
+        <!-- Divider -->
         <div class="col-2 text-center">
           <div class="vr h-100"></div>
         </div>
 
+        <!-- Player 2 -->
         <div class="col-5 ps-4">
           <div class="position-relative">
+            <!-- Hero Image -->
+            <img src="{{ url_for('static', filename=game.player2_hero.image_url) }}" alt="{{ game.player2_hero.name }}"
+                 class="img-thumbnail mb-2" style="width: 120px; height: 120px;"
+            >
+
+            <!-- Player Place -->
             <h2 class="{{ 'text-success' if game.player2_place < game.player1_place }}">
               {{ game.player2_place }}
             </h2>
+
+            <!-- Hero Name -->
             <small class="text-muted d-block">
-              {{ game.player2_hero.name}}
+              {{ game.player2_hero.name }}
             </small>
+
+            <!-- Unit Type Image -->
+            <img src="{{ url_for('static', filename=game.player1_unit_type.image_url) }}"  alt="{{ game.player2_unit_type.name }}"
+                 class="img-thumbnail mb-2" style="width: 120px; height: 120px;">
+
+            <!-- Unit Type Name -->
             <small class="text-muted d-block">
               {{ game.player2_unit_type.name }}
             </small>
           </div>
         </div>
+
       </div>
+      <!-- Timestamp -->
       <div class="mt-3 text-end">
         <small class="text-muted">
           <i class="bi bi-clock-history me-1"></i>

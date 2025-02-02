@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from sqlalchemy import func, text
+from sqlalchemy import func, text, desc
 
 from .. import db
 from ..models import Game, Hero, UnitType
@@ -8,7 +8,8 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
-    games = Game.query.all()
+    # games = Game.query.all()
+    games = db.session.query(Game).order_by(desc(Game.timestamp)).limit(10).all()
     hero_list = Hero.query.all()
     unit_types = UnitType.query.all()
 
@@ -28,8 +29,8 @@ def index():
 
     scores_5day_sql = '''
             SELECT
-                date(timestamp)                         as day,
-                -1*SUM(player1_place - player2_place)      as score,
+                date(timestamp)                             as day,
+                -1*SUM(player1_place - player2_place)       as score,
                 CASE
                     WHEN SUM(player1_place - player2_place) < 0 THEN 'color:green'
                     WHEN SUM(player1_place - player2_place) > 0 THEN 'color:red'

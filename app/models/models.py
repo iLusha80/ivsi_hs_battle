@@ -1,5 +1,6 @@
 from app import db
 
+
 class Hero(db.Model):
     __tablename__ = 'heroes'
     id = db.Column(db.Integer, primary_key=True)
@@ -9,13 +10,17 @@ class Hero(db.Model):
     def __repr__(self):
         return f'<Hero {self.name}>'
 
+
 class UnitType(db.Model):
     __tablename__ = 'unit_types'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), nullable=False)
+    image_url = db.Column(db.String(256))
+
 
     def __repr__(self):
-        return f'<id {self.id} UnitType {self.name}>'
+        return f'<id {self.id} UnitType {self.name} url {self.image_url}>'
+
 
 class Game(db.Model):
     __tablename__ = 'games'
@@ -36,8 +41,7 @@ class Game(db.Model):
     player2_unit_type = db.relationship('UnitType', foreign_keys=[player2_unit_type_id])
 
     def __repr__(self):
-        txt = f"""<Game {self.id} ({self.timestamp}
-        - Calculated: {self.fl_calculated})
+        txt = f"""<Game {self.id} ({self.timestamp} | Calculated: {self.fl_calculated})
         Player 1: {self.player1_hero.name} ({self.player1_place}), {self.player1_unit_type.name}
         Player 2: {self.player2_hero.name} ({self.player2_place}), {self.player2_unit_type.name})>
         """

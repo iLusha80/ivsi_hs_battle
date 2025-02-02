@@ -64,3 +64,13 @@ body {
 .avatar {
     border-radius: 12px;
 }
+
+.img-thumbnail {
+  border-radius: 8px;
+  object-fit: cover;
+}
+.vr {
+  border-left: 2px solid #ddd;
+  height: 100%;
+}
+
