@@ -1,9 +1,12 @@
 from flask import Flask
-from .database import init_db
 from datetime import datetime
 
+from .database import init_db
+from ..config import load_config
+
+config = load_config()
 app = Flask(__name__)
-app.secret_key = 'u12y31oi23g12p;983gt1:2p98tg3i1uge1'
+app.secret_key = config.SECRET_KEY
 
 # Добавляем фильтр для форматирования даты
 @app.template_filter('datetimeformat')

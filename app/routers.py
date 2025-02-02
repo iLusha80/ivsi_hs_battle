@@ -1,9 +1,10 @@
 from flask import render_template, request, redirect, session, jsonify
 
+from config import load_config
+
 from .database import get_db
 from . import app
 from .services.search import super_search
-from config import load_config
 
 config = load_config()
 

@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 from dataclasses import dataclass
 
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 
 @dataclass
 class Config:
@@ -13,4 +15,4 @@ class Config:
 
 def load_config() -> Config:
     load_dotenv()
-    return Config(admin_password=os.environ.get('ADMIN_PASSWORD'))
+    return Config(admin_password=os.environ.get('ADMIN_PASSWORD'), SECRET_KEY=os.environ.get('SECRET_KEY'))
