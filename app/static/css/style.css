@@ -42,9 +42,19 @@
   text-align: center;
 }
 
-.hero-avatar, .unit-avatar {
+.hero-avatar {
   width: 120px;
   height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+
+.unit-avatar {
+  width: 120px;
+  height: 150px;
   border-radius: 12px;
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);

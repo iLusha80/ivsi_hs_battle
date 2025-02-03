@@ -2,3 +2,5 @@
 .idea
 games.db
 .env
+app/static/images/heroes
+app/static/images/unit_types
