@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="main-battle-section">
+    <div class="row align-items-center">
+        <table class="table table-striped table-bordered">
+            {% for game in games %}
+            <tr>
+                <td>{{ game.id }} </td>
+                <td>{{ game.timestamp }}</td>
+                <td>{{ game.player1_hero.name }}</td>
+                <td>{{ game.player1_place }}</td>
+                <td>{{ game.player2_hero.name }}</td>
+                <td>{{ game.player1_place }}</td>
+                <td>
+                    <form action="/games/delete/{{ game.id }}" method="POST">
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+</section>
+{% endblock %}
