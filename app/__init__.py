@@ -12,9 +12,8 @@ app.config.from_object(config)
 
 db = SQLAlchemy(app)
 
-# app.secret_key = config.SECRET_KEY
 
-# Добавляем фильтр для форматирования даты
+# Фильтр для форматирования даты
 @app.template_filter('datetimeformat')
 def datetimeformat_filter(value, format='%d.%m.%Y %H:%M'):
     if isinstance(value, str):
