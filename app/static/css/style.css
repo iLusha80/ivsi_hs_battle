@@ -1,76 +1,140 @@
-/* Модальное окно добавления результатов */
-#addResultModal .modal-header {
-  padding: 1.2rem;
+/* Game Card Styles */
+.game-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-#addResultModal .form-label {
-  font-weight: 500;
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
 }
 
-#addResultModal .border-end {
-  border-right: 2px solid #dee2e6 !important;
+.game-content {
+  padding: 24px;
 }
 
-/* Карточки с результатами */
-.card {
-  transition: transform 0.2s;
+/* Battle Table */
+.battle-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 16px;
+}
+
+/* Player Cells */
+.player-cell {
+  width: 45%;
+  vertical-align: top;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Hero Section */
+.hero-section, .unit-section {
+  position: relative;
+  text-align: center;
+}
+
+.hero-avatar, .unit-avatar {
+  width: 120px;
+  height: 120px;
   border-radius: 12px;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-}
-
-.bi-trophy-fill {
-  font-size: 1.4rem;
-  margin-top: -0.5rem;
-}
-
-.vr {
-  width: 2px;
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(0,0,0,0.1) 50%,
-    transparent 100%);
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-  #addResultModal .border-end {
-    border-right: none !important;
-    border-bottom: 2px solid #dee2e6 !important;
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .emblem {
-    max-width: 80px;
-  }
-
-  .score-display {
-    font-size: 2.5rem;
-  }
-}
-
-.arrow {
-        font-size: 24px; /* Размер стрелки */
-        line-height: 1; /* Выравнивание по вертикали */
-    }
-
-body {
-  background-color: #333; /* темно-синий */
-}
-
-.avatar {
-    border-radius: 12px;
-}
-
-.img-thumbnail {
-  border-radius: 8px;
   object-fit: cover;
-}
-.vr {
-  border-left: 2px solid #ddd;
-  height: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
 }
 
+.hero-avatar:hover, .unit-avatar:hover {
+  transform: scale(1.05);
+}
+
+.place-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #f0f0f0;
+  color: #666;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.place-badge.winner {
+  background: #28a745;
+  color: white;
+}
+
+.hero-name, .unit-name {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* VS Cell */
+.vs-cell {
+  width: 10%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.vs-badge {
+  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(255,107,107,0.3);
+}
+
+/* Footer */
+.game-footer {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+  text-align: right;
+}
+
+.timestamp {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.timestamp i {
+  margin-right: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .game-content {
+    padding: 16px;
+  }
+
+  .battle-table {
+    border-spacing: 8px;
+  }
+
+  .hero-avatar, .unit-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .vs-badge {
+    font-size: 1rem;
+    padding: 6px 12px;
+  }
+
+  .place-badge {
+    font-size: 1rem;
+    padding: 3px 10px;
+  }
+}
