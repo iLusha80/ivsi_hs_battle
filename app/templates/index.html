@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <div class="row align-items-center">
-            <!-- Колонка игрока 1 -->
+    <section class="main-battle-section">
+        <div class="row align-items-center">
             <div class="col-5">
                 <div class="d-flex align-items-center justify-content-end">
                     <img src="{{ url_for('static', filename='images/vano2.webp') }}"
@@ -11,26 +10,20 @@
                 </div>
             </div>
 
-            <!-- Счет -->
             <div class="col-2 text-center">
-                <h1 class="score-display" style={{ score_color }}>{{ score }}</h1>
-                <!-- таблица из двух столбцов день score_за день формируется циклом из списка спсиков-->
+                <h1 class="score-display">{{ score }}</h1>
                 {% for day, score, score_color in scores_5day %}
                     <div class="score-table-row">
                         <table class="table">
-                            <tr style={{ score_color }}>
-<!--                            <tr class = {{ score_color }} >-->
+                            <tr>
                                 <td>{{ day }}</td>
                                 <td>{{ score }}</td>
                             </tr>
                         </table>
-<!--                        <div class="score-table-cell">{{ day }}</div>-->
-<!--                        <div class="score-table-cell">{{ score }}</div>-->
                     </div>
                 {% endfor %}
             </div>
 
-            <!-- Колонка игрока 2 -->
             <div class="col-5">
                 <div class="d-flex align-items-center">
                     <img src="{{ url_for('static', filename='images/iv1.webp') }}"
@@ -38,18 +31,19 @@
                 </div>
             </div>
         </div>
+    </section>
 
-    <div class="d-flex justify-content-end mb-4">
+    <div class="admin-controls d-flex justify-content-end">
         {% if session.logged_in %}
-            <button class="btn btn-primary me-2" 
-                    data-bs-toggle="modal" 
+            <button class="btn btn-primary me-2"
+                    data-bs-toggle="modal"
                     data-bs-target="#addResultModal">
                 Добавить результат
             </button>
             <a href="/logout" class="btn btn-danger">Выйти</a>
         {% else %}
-            <button class="btn btn-outline-secondary" 
-                    data-bs-toggle="modal" 
+            <button class="btn btn-outline-secondary"
+                    data-bs-toggle="modal"
                     data-bs-target="#loginModal">
                 Админ-Шмандмин
             </button>
