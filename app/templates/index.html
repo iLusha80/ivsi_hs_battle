@@ -1,60 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <section class="main-battle-section">
+        <div class="row align-items-center">
+            <div class="col-5">
+                <div class="d-flex align-items-center justify-content-end">
+                    <img src="{{ url_for('static', filename='images/vano2.webp') }}"
+                         alt="Player 1 Emblem" class="emblem" width="530" height="300">
+                </div>
+            </div>
 
-<div class="row align-items-center">
-    <!-- Колонка игрока 1 -->
-    <div class="col-5">
-        <div class="d-flex align-items-center justify-content-end">
-            <img src="{{ url_for('static', filename='images/vano2.webp') }}"
-                 alt="Player 1 Emblem" class="emblem" width="530" height="300">
+            <div class="col-2 text-center">
+                <h1 class="score-display">{{ score }}</h1>
+                {% for day, score, score_color in scores_5day %}
+                    <div class="score-table-row">
+                        <table class="table">
+                            <tr>
+                                <td>{{ day }}</td>
+                                <td>{{ score }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="col-5">
+                <div class="d-flex align-items-center">
+                    <img src="{{ url_for('static', filename='images/iv1.webp') }}"
+                         alt="Player 2 Emblem" class="emblem" width="530" height="300">
+                </div>
+            </div>
         </div>
+    </section>
+
+    <div class="admin-controls d-flex justify-content-end">
+        {% if session.logged_in %}
+            <button class="btn btn-primary me-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#addResultModal">
+                Добавить результат
+            </button>
+            <a href="/logout" class="btn btn-danger">Выйти</a>
+        {% else %}
+            <button class="btn btn-outline-secondary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#loginModal">
+                Админ-Шмандмин
+            </button>
+        {% endif %}
     </div>
 
-    <!-- Счет -->
-    <div class="col-2 text-center">
-        <h1 class="score-display" style={{ score_color }}>{{ score }}</h1>
-        {% for day, score, score_color in scores_5day %}
-            <div class="score-table-row">
-                <table class="table">
-                    <tr style={{ score_color }}>
-                        <td>{{ day }}</td>
-                        <td>{{ score }}</td>
-                    </tr>
-                </table>
-            </div>
+    <div class="row g-4">
+        {% for game in games %}
+            {% include 'components/game_item.html' %}
         {% endfor %}
     </div>
-
-    <!-- Колонка игрока 2 -->
-    <div class="col-5">
-        <div class="d-flex align-items-center">
-            <img src="{{ url_for('static', filename='images/iv1.webp') }}"
-                 alt="Player 2 Emblem" class="emblem" width="530" height="300">
-        </div>
-    </div>
-</div>
-
-<div class="d-flex justify-content-end mb-4">
-    {% if session.logged_in %}
-        <button class="btn btn-primary me-2"
-                data-bs-toggle="modal"
-                data-bs-target="#addResultModal">
-            Добавить результат
-        </button>
-        <a href="/logout" class="btn btn-danger">Выйти</a>
-    {% else %}
-        <button class="btn btn-outline-secondary"
-                data-bs-toggle="modal"
-                data-bs-target="#loginModal">
-            Админ-Шмандмин
-        </button>
-    {% endif %}
-</div>
-
-<div class="row g-4">
-    {% for game in games %}
-        {% include 'components/game_item.html' %}
-    {% endfor %}
-</div>
 {% endblock %}

@@ -11,7 +11,7 @@
     {% include 'components/login_modal.html' %}
     {% include 'components/add_result_modal.html' %}
 
-    <header class="container-fluid custom-header py-3">
+    <header class="custom-header">
         <nav class="nav-links">
             <a href="/">Главная</a>
             <a href="/tests">Тесты</a>
@@ -19,7 +19,7 @@
         </nav>
     </header>
 
-    <main class="container py-4">
+    <main class="container">
         {% block content %}{% endblock %}
     </main>
 
