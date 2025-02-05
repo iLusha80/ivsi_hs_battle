@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, session
-from sqlalchemy import func, text, desc
+from sqlalchemy import desc
 
 from ..models import Game
-from .. import config, db
+from .. import  db
 
 games_bp = Blueprint('games', __name__)
 
@@ -19,5 +19,15 @@ def delete_game(id):
         return redirect('/')
     game = Game.query.get_or_404(id)
     db.session.delete(game)
+    db.session.commit()
+    return redirect('/games')
+
+@games_bp.route('/games/toggle_flag/<int:id>', methods=['POST'])
+def toggle_flag(id):
+    if not session.get('logged_in'):
+        return redirect('/')
+    game = Game.query.get_or_404(id)
+    # Переключаем значение флага
+    game.fl_calculated = not game.fl_calculated
     db.session.commit()
     return redirect('/games')

@@ -2,7 +2,7 @@
 body {
     background: #1a1a1a;
     color: #fff;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Courier New', monospace;
     min-height: 100vh;
 }
 
@@ -273,4 +273,21 @@ body {
 
 .timestamp i {
     margin-right: 4px;
+}
+
+.mytable {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.mytable td {
+    padding: 8px 16px;
+    border-bottom: 1px solid #ddd;
+    color: white;
+}
+
+.mytable th {
+    background: #383838;
+    color: #fff;
 }

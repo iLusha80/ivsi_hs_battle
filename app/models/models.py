@@ -25,7 +25,6 @@ class UnitType(db.Model):
 class Game(db.Model):
     __tablename__ = 'games'
     id = db.Column(db.Integer, primary_key=True)
-    # исправь добавь за значение по умочанию текущее время
     timestamp = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
     player1_hero_id = db.Column(db.Integer, db.ForeignKey('heroes.id'))
     player1_place = db.Column(db.Integer, nullable=False)
