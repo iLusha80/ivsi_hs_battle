@@ -8,22 +8,18 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Дата и время</th>
-                    <th scope="col">Герой игрока 1</th>
-                    <th scope="col">Место в рейтинге</th>
-                    <th scope="col">Герой игрока 2</th>
-                    <th scope="col">Место в рейтинге</th>
+                    <th scope="col">И1. Герой (Место) </th>
+                    <th scope="col">И2. Герой (Место) </th>
                     <th scope="col" class="text-center">Флаг расчёта</th>
                     <th scope="col" class="text-center">Удалить</th>
                 </tr>
-            </thead>
+            </thead>`
             {% for game in games %}
             <tr>
                 <td>{{ game.id }} </td>
                 <td>{{ game.timestamp }}</td>
-                <td>{{ game.player1_hero.name }}</td>
-                <td>{{ game.player1_place }}</td>
-                <td>{{ game.player2_hero.name }}</td>
-                <td>{{ game.player2_place }}</td>
+                <td>{{ game.player1_hero.name }} <br> {{ game.player1_place }}</td>
+                <td>{{ game.player2_hero.name }} <br> {{ game.player2_place }}</td>
                 <td class="text-center">
 
                         <form action="/games/toggle_flag/{{ game.id }}" method="POST" class="d-inline">
