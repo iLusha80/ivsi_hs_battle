@@ -8,7 +8,6 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
-    # games = Game.query.all()
     games = db.session.query(Game).order_by(desc(Game.timestamp)).limit(10).all()
     hero_list = Hero.query.all()
     unit_types = UnitType.query.all()
@@ -37,8 +36,8 @@ def index():
                     ELSE 'color:yellow'
                 END score_color
             FROM games
-            GROUP BY date(timestamp)
-            ORDER BY timestamp DESC
+            GROUP BY 1
+            ORDER BY 1 DESC
             LIMIT 5
     '''
 
