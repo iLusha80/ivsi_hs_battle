@@ -1,0 +1,10 @@
+<div>
+    <h3>{{ data.plot_name }}</h3>
+    <div id="{{ data.html_id }}">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script>
+            var graphs = {{ data.json_plotly_data | safe }};
+            Plotly.newPlot('{{ data.html_id }}', graphs);
+        </script>
+    </div>
+</div>

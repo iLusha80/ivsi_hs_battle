@@ -1,88 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Текстовое поле для поиска с выпадающим списком -->
-<form class="mb-3">
-    <label for="search-input">Поиск:</label>
-    <input type="text" class="form-control" id="search-input" placeholder="Начните вводить текст" list="search-options">
-    <datalist id="search-options">
-        <!-- Опции будут динамически генерироваться JavaScript -->
-    </datalist>
-</form>
 
-<script>
-    // Функция debounce для ограничения частоты вызовов
-    function debounce(func, delay) {
-        let timeout;
-        return function(...args) {
-            const context = this;
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(context, args), delay);
-        };
+<div class="bar-chart">
+    <h3> Победы </h3>
+    <div class="bar" style="width: 50%;"><span>Игрок 1: 50%</span></div>
+    <div class="bar" style="width: 50%;"><span>Игрок 2: 50%</span></div>
+</div>
+
+<style>
+    .bar-chart {
+        width: 100%;
     }
 
-    // Функция для выполнения поиска
-    function performSearch(searchText) {
-        // Проверяем, что строка поиска не пуста
-        if (!searchText) {
-            clearSearchResults(); // Очищаем результаты
-            return;
-        }
-
-        // Отправляем GET-запрос на ваш endpoint
-        fetch(`/search?q=${searchText}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Обрабатываем полученные данные и отображаем их
-                displaySearchResults(data);
-            })
-            .catch(error => {
-                console.error('Ошибка при выполнении поиска:', error);
-                // Отображение ошибки в datalist может быть сложным, просто выведем в консоль
-                clearSearchResults();
-            });
+    .bar {
+        background-color: #3498db;
+        height: 30px;
+        margin: 10px 0;
+        border-radius: 5px;
+        color: white;
+        text-align: center;
+        line-height: 30px; /* Vertically center text */
     }
 
-    // Функция для отображения результатов поиска в datalist
-    function displaySearchResults(results) {
-        const datalist = document.getElementById('search-options');
-        clearSearchResults(); // Очищаем предыдущие результаты
+</style>
 
-        if (results && results.length > 0) {
-            results.forEach(result => {
-                const option = document.createElement('option');
-                option.value = result;
-                datalist.appendChild(option);
-            });
-        } else {
-            // Если результатов нет, можно добавить сообщение "Ничего не найдено"
-            const option = document.createElement('option');
-            option.value = "Ничего не найдено";
-            option.disabled = true; // Отключаем выбор
-            datalist.appendChild(option);
-        }
-    }
-
-    // Функция для очистки результатов поиска в datalist
-    function clearSearchResults() {
-        const datalist = document.getElementById('search-options');
-        while (datalist.firstChild) {
-            datalist.removeChild(datalist.firstChild);
-        }
-    }
-
-    // Получаем элемент input
-    const searchInput = document.getElementById('search-input');
-
-    // Добавляем слушатель событий на ввод текста, используя debounce
-    searchInput.addEventListener('input', debounce(function() {
-        const searchText = this.value;
-        performSearch(searchText);
-    }, 300)); // Задержка в 300 мс
-</script>
 {% endblock %}
