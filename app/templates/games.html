@@ -17,7 +17,7 @@
             {% for game in games %}
             <tr>
                 <td>{{ game.id }} </td>
-                <td>{{ game.timestamp }}</td>
+                <td>{{ game.timestamp|datetimeformat }}</td>
                 <td>{{ game.player1_hero.name }} <br> {{ game.player1_place }}</td>
                 <td>{{ game.player2_hero.name }} <br> {{ game.player2_place }}</td>
                 <td class="text-center">
