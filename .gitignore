@@ -1,8 +1,6 @@
 .venv
 .idea
-games.db
 .env
 app/static/images/heroes
 app/static/images/unit_types
-TODOs/go-to-postgresql.md
 TODOs/
