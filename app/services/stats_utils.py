@@ -186,14 +186,35 @@ def generate_jiro_stats_plot():
     # Обрезаем героев, которые не участвовали в играх
     y = [jiro_stats[key]['mean_place'] for key in jiro_stats]
 
-    print(type(y))
-    print(y)
-
-
     # Создаем график
     plotter = PlotlyGraphs(jiro_stats, y=y)
 
     fig = plotter.shadow_accent()
+
+    # Конвертируем в JSON для передачи в шаблон
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return graphJSON
+
+
+def generate_unit_types_circle():
+    # Собираем данные из БД
+    unit_types = defaultdict(lambda: {'games': 0})
+    games = Game.query.all()
+    for game in games:
+        unit_types[game.player1_unit_type.name]['games'] += 1
+        unit_types[game.player2_unit_type.name]['games'] += 1
+    # Создаем график
+    labels = list(unit_types.keys())
+    values = [unit_types[label]['games'] for label in labels]
+
+    # Создаем круговую диаграмму
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
+
+    # Настраиваем внешний вид диаграммы
+    fig.update_traces(hoverinfo='label+percent', textinfo='value', textfont_size=20,
+                      marker=dict(line=dict(color='#000000', width=2)))
+
+    fig.update_layout(title_text='Распределение игр по типам юнитов', title_x=0.5)
 
     # Конвертируем в JSON для передачи в шаблон
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
