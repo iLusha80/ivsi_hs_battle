@@ -1,0 +1,38 @@
+[
+  {
+    "id": "hero_stats",
+    "name": "Статистика по героям",
+    "description": "График, отображающий статистику по героям",
+    "module": "stats_avg_units_type",
+    "function": "generate_hero_stats_plot",
+    "row": 1,
+    "width": 1
+  },
+  {
+    "id": "jiro_stats",
+    "name": "Среднее место по героям",
+    "description": "График, отображающий среднее место по героям",
+    "module": "stats_avg_units_type",
+    "function": "generate_jiro_stats_plot",
+    "row": 1,
+    "width": 1
+  },
+  {
+    "id": "unit_types",
+    "name": "Типы юнитов",
+    "description": "Круговая диаграмма, отображающая типы юнитов",
+    "module": "stats_avg_units_type",
+    "function": "generate_unit_types_circle",
+    "row": 2,
+    "width": 2
+  },
+  {
+    "id": "top_heroes",
+    "name": "Топ-5 самых популярных героев",
+    "description": "График, отображающий 5 самых популярных героев",
+    "module": "stats_top_heroes",
+    "function": "generate_top_heroes_plot",
+    "row": 3,
+    "width": 2
+  }
+]

@@ -1,0 +1,31 @@
+/* Header Styles */
+.custom-header {
+    background: #2d2d2d;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    margin-bottom: 32px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: #383838;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.nav-links a:hover {
+    background: #3498db;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+}

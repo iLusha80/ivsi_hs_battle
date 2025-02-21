@@ -1,0 +1,44 @@
+/* Admin Controls */
+.admin-controls {
+    margin: 32px 0;
+}
+
+.btn {
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+    background: #383838;
+    color: #fff;
+}
+
+.btn-outline-secondary:hover {
+    background: #454545;
+    color: #3498db;
+    transform: translateY(-2px);
+}

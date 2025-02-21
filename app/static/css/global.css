@@ -1,0 +1,7 @@
+/* Global Styles */
+body {
+    background: #1a1a1a;
+    color: #fff;
+    font-family: 'Courier New', monospace;
+    min-height: 100vh;
+}
