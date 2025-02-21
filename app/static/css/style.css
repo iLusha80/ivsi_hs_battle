@@ -340,4 +340,54 @@ body {
 
 .text-danger {
     color: #e74c3c !important;
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.col-md-2 {
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+
+/* Heroes Styles */
+.heroes-list {
+    list-style: none;
+    padding: 0;
+}
+
+.heroes-list li {
+    margin-bottom: 10px;
+}
+
+.hero-form {
+    margin-top: 20px;
+}
+
+.hero-form input[type=text] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: #fff;
+}
+
+.hero-form input[type=submit] {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.hero-form input[type=submit]:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
 }
