@@ -31,6 +31,7 @@ async def download_images(cards: list, prefix_dir: str = 'imgs/') -> None:
     Загружает изображения из списка карт
 
     :param cards: Список карт, где каждый элемент - это кортеж (rus_name, lat_name, image_url, save_as)
+    :param prefix_dir: Папка для сохранения изображений (по умолчанию 'imgs/')
     :return:
     """
     tasks = []
@@ -43,7 +44,7 @@ async def download_images(cards: list, prefix_dir: str = 'imgs/') -> None:
     await asyncio.gather(*tasks)
 
 
-cards = read_json_file('data.json')
+cards = read_json_file('data_2.json')
 
 start_time = perf_counter()
 
