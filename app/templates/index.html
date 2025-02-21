@@ -11,11 +11,11 @@
             </div>
 
             <div class="col-2 text-center" >
-                <h1 class="score-display" style={{ score_color }}>{{ score }}</h1>
+                <h1 class="score-display" style="{{ score_color }}"> {{ score }}</h1>
                 {% for day, score, score_color in scores_5day %}
                     <div class="score-table-row">
                         <table class="table">
-                            <tr style={{ score_color }}>
+                            <tr style="{{ score_color }}">
                                 <td>{{ day }}</td>
                                 <td>{{ score }}</td>
                             </tr>
@@ -55,4 +55,7 @@
             {% include 'components/game_item.html' %}
         {% endfor %}
     </div>
+
+    {% include 'components/add_result_modal.html' %}
+
 {% endblock %}
