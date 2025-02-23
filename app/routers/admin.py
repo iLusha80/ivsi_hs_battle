@@ -15,7 +15,3 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect('/')
-
-@admin_bp.route('/tests')
-def tests():
-    return render_template('tests.html')

@@ -4,6 +4,10 @@
     <section class="main-battle-section">
         <div class="row align-items-center">
             <div class="col-5">
+                <h3>Вано90210</h3>
+
+                {% include 'components/stat_index_table_item.html' %}
+
                 <div class="d-flex align-items-center justify-content-end">
                     <img src="{{ url_for('static', filename='images/vano2.webp') }}"
                          alt="Player 1 Emblem" class="emblem" width="530" height="300">
@@ -11,13 +15,13 @@
             </div>
 
             <div class="col-2 text-center" >
-                <h1 class="score-display" style="{{ score_color }}"> {{ score }}</h1>
-                {% for day, score, score_color in scores_5day %}
+                <h1 class="score-display" style="{{ total_score.score_color }}"> {{ total_score.txt_score }}</h1>
+                {% for day_score in scores_5day %}
                     <div class="score-table-row">
                         <table class="table">
-                            <tr style="{{ score_color }}">
-                                <td>{{ day }}</td>
-                                <td>{{ score }}</td>
+                            <tr style="{{ day_score.score_color }}">
+                                <td>{{ day_score.day }}</td>
+                                <td>{{ day_score.score }}</td>
                             </tr>
                         </table>
                     </div>

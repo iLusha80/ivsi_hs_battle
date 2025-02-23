@@ -2,27 +2,6 @@
 
 {% block content %}
 
-<div class="bar-chart">
-    <h3> Победы </h3>
-    <div class="bar" style="width: 50%;"><span>Игрок 1: 50%</span></div>
-    <div class="bar" style="width: 50%;"><span>Игрок 2: 50%</span></div>
-</div>
-
-<style>
-    .bar-chart {
-        width: 100%;
-    }
-
-    .bar {
-        background-color: #3498db;
-        height: 30px;
-        margin: 10px 0;
-        border-radius: 5px;
-        color: white;
-        text-align: center;
-        line-height: 30px; /* Vertically center text */
-    }
-
-</style>
+{% include 'components/stat_index_table_item.html' %}
 
 {% endblock %}

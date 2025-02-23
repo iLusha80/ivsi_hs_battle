@@ -1,0 +1,32 @@
+<div class="row align-items-center">
+  <table class="table table-bordered text-center mytable">
+    <thead>
+        <tr>
+          <th scope="col">Игры</th>
+          <th scope="col">1 plc.</th>
+          <th scope="col">2 plc.</th>
+          <th scope="col">3 plc.</th>
+          <th scope="col">4 plc.</th>
+          <th scope="col">5 plc.</th>
+          <th scope="col">6 plc.</th>
+          <th scope="col">7 plc.</th>
+          <th scope="col">8 plc.</th>
+          <th scope="col">AVG plc.</th>
+        </tr>
+    </thead>
+    {% for row in data_stat %}
+      <tr>
+        <td>{{ row.name_games }}</td>
+        <td>{{ row.pl1 }}</td>
+        <td>{{ row.pl2 }}</td>
+        <td>{{ row.pl3 }}</td>
+        <td>{{ row.pl4 }}</td>
+        <td>{{ row.pl5 }}</td>
+        <td>{{ row.pl6 }}</td>
+        <td>{{ row.pl7 }}</td>
+        <td>{{ row.pl8 }}</td>
+        <td>{{ row.avg_place }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
