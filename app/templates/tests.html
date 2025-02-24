@@ -2,6 +2,12 @@
 
 {% block content %}
 
-{% include 'components/stat_index_table_item.html' %}
+<h2 class="text-center">Player1</h2>
+{% set unit_types_stat = players_unit_stat.player1 %}
+{% include 'components/stat_index_unit_types.html' %}
+<br>
+<h2 class="text-center">Player2</h2>
+{% set unit_types_stat = players_unit_stat.player2 %}
+{% include 'components/stat_index_unit_types.html' %}
 
 {% endblock %}

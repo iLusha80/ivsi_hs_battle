@@ -1,0 +1,26 @@
+<div class="row align-items-center">
+  <table class="table table-bordered text-center mytable" style="margin: 0 auto; border-spacing: 5px; font-size: 0.9rem;">
+    <thead>
+        <tr>
+          <th scope="col">unit_type_name</th>
+          <th scope="col">count_games</th>
+          <th scope="col">avg_place</th>
+          <th scope="col">count_1place</th>
+          <th scope="col">percent_1place</th>
+          <th scope="col">count_top4</th>
+          <th scope="col">percent_top4</th>
+        </tr>
+    </thead>
+    {% for row in unit_types_stat %}
+    <tr>
+        <td>{{ row.unit_type_name }}</td>
+        <td>{{ row.count_games }}</td>
+        <td>{{ row.avg_place }}</td>
+        <td>{{ row.count_1place }}</td>
+        <td>{{ row.percent_1place }}</td>
+        <td>{{ row.count_top4 }}</td>
+        <td>{{ row.percent_top4 }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
