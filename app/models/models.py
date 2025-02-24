@@ -42,6 +42,5 @@ class Game(db.Model):
     def __repr__(self):
         txt = f"""<Game {self.id} ({self.timestamp} | Calculated: {self.fl_calculated})
         Player 1: {self.player1_hero.name} ({self.player1_place}), {self.player1_unit_type.name}
-        Player 2: {self.player2_hero.name} ({self.player2_place}), {self.player2_unit_type.name})>
-        """
+        Player 2: {self.player2_hero.name} ({self.player2_place}), {self.player2_unit_type.name})>"""
         return txt
