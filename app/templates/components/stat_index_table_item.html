@@ -1,5 +1,5 @@
 <div class="row align-items-center">
-  <table class="table table-bordered text-center mytable">
+  <table class="table table-bordered text-center mytable" style="margin: 0 auto; border-spacing: 5px; font-size: 0.9rem;">
     <thead>
         <tr>
           <th scope="col">Игры</th>
@@ -15,7 +15,11 @@
         </tr>
     </thead>
     {% for row in data_stat %}
-      <tr>
+      {% if loop.last %}
+        <tr style="font-weight: bold;">
+      {% else %}
+        <tr>
+      {% endif %}
         <td>{{ row.num_games }}</td>
         <td>{{ row.pl1 }}</td>
         <td>{{ row.pl2 }}</td>

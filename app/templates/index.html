@@ -4,16 +4,15 @@
     <section class="main-battle-section">
         <div class="row align-items-center">
             <div class="col-5">
-
                 <h3>Вано90210</h3>
-                <div class="d-flex align-items-center justify-content-end">
-                {% set data_stat = player1_stats %}
+                <div>
+                    {% set data_stat = player1_stats %}
 
-                {% include 'components/stat_index_table_item.html' %}
+                    {% include 'components/stat_index_table_item.html' %}
                 </div>
             </div>
 
-            <div class="col-2 text-center" >
+            <div class="col-2 text-center">
                 <h1 class="score-display" style="{{ total_score.score_color }}"> {{ total_score.txt_score }}</h1>
                 {% for day_score in scores_5day %}
                     <div class="score-table-row">
@@ -29,7 +28,7 @@
 
             <div class="col-5">
                 <h3>Илюша80210</h3>
-                <div class="d-flex align-items-center justify-content-end">
+                <div>
                 {% set data_stat = player2_stats %}
 
                 {% include 'components/stat_index_table_item.html' %}

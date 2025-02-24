@@ -39,6 +39,14 @@ body {
 }
 
 /* Main Battle Section */
+.main-battle-section {
+    background: #2d2d2d;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
 .battle-section {
     background: #2d2d2d;
     border-radius: 16px;
