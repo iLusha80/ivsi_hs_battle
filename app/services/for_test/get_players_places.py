@@ -24,14 +24,17 @@ class PlayersStats:
 
 def get_player_place_stats(num_games: Optional[int] = None, p: int = 1) -> IndexStaticPlaceTableRow:
     """
+    
     Получает статистику по местам игрока за указанное число игр.
     Если num_games не указан, то получает статистику по ВСЕМ играм.
+    
     :param num_games: Число игр
     :type num_games: Optional[int]
     :param p: Игрок 1 или 2
     :type p: int
     :return:
     :rtype: IndexStaticPlaceTableRow
+    
     """
     # Получаем данные из БД
     if not num_games: num_games = 99_999

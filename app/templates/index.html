@@ -4,7 +4,7 @@
     <section class="main-battle-section">
         <div class="row align-items-center">
             <div class="col-5">
-                <h3>Вано90210</h3>
+                <h3 class="player1-name text-center">Вано90210</h3>
                 <div>
                     {% set data_stat = player1_stats %}
 
@@ -13,11 +13,11 @@
             </div>
 
             <div class="col-2 text-center">
-                <h1 class="score-display" style="{{ total_score.score_color }}"> {{ total_score.txt_score }}</h1>
+                <h1 class="score-display" style="color: {{ total_score.score_color }}"> {{ total_score.txt_score }}</h1>
                 {% for day_score in scores_5day %}
                     <div class="score-table-row">
                         <table class="table">
-                            <tr style="{{ day_score.score_color }}">
+                            <tr style="color: {{ day_score.score_color}}">
                                 <td>{{ day_score.day }}</td>
                                 <td>{{ day_score.score }}</td>
                             </tr>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="col-5">
-                <h3>Илюша80210</h3>
+                <h3 class="player2-name text-center">Илюша80210</h3>
                 <div>
                 {% set data_stat = player2_stats %}
 

@@ -20,12 +20,12 @@ def get_total_score():
 
     if total_score > 0:
         txt_score = f'-{total_score}'
-        score_color = 'color:red'
+        score_color = 'red'
     elif total_score < 0:
         txt_score = f'+{-total_score}'
-        score_color = 'color:green'
+        score_color = 'green'
     else:
         txt_score = '0'
-        score_color = 'color:yellow'
+        score_color = 'yellow'
 
     return TotalScore(total_score=total_score, txt_score=txt_score, score_color=score_color)

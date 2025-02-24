@@ -16,9 +16,9 @@ def get_5days_scores() -> List[DayScore]:
                 date(timestamp)                             as day,
                 -1*SUM(player1_place - player2_place)       as score,
                 CASE
-                    WHEN SUM(player1_place - player2_place) < 0 THEN 'color:green'
-                    WHEN SUM(player1_place - player2_place) > 0 THEN 'color:red'
-                    ELSE 'color:yellow'
+                    WHEN SUM(player1_place - player2_place) < 0 THEN 'green'
+                    WHEN SUM(player1_place - player2_place) > 0 THEN 'red'
+                    ELSE 'yellow'
                 END score_color
             FROM games
             GROUP BY 1
