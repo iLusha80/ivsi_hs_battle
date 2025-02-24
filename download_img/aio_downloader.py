@@ -49,7 +49,7 @@ cards = read_json_file('data_2.json')
 start_time = perf_counter()
 
 
-prefix_dir = '/home/i80/PycharmProjects/ivsi_hs_battle/app/static/images/heroes/'
+prefix_dir = '/app/static/images/heroes/'
 
 asyncio.run(download_images(cards=cards, prefix_dir=prefix_dir))
 

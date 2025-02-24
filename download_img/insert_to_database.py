@@ -69,5 +69,5 @@ def update_heroes_dictionary(file_path: str) -> Tuple[int, int]:
 
 
 if __name__ == "__main__":
-    FILE_PATH = '/home/i80/PycharmProjects/ivsi_hs_battle/app/services/download_img/data_2.json'
+    FILE_PATH = '/download_img/data_2.json'
     update_heroes_dictionary(FILE_PATH)

@@ -1,7 +1,8 @@
 from app import db
+from sqlalchemy import text
 
-# get result from database from query rerutn fetchall
 
-def fetch_data_from_query(query: str, db):
-    result = db.session.execute(query).fetchall()
+def get_data_from_query(sql: str):
+    with db.engine.connect() as conn:
+        result = conn.execute(text(sql)).fetchall()
     return result

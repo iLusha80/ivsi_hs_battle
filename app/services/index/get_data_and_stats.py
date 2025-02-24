@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 from typing import List
-from sqlalchemy import text
 
-from app import db
+from app.services.utils import get_data_from_query
 
 @dataclass
 class DayScore:
@@ -26,8 +25,6 @@ def get_5days_scores() -> List[DayScore]:
             ORDER BY 1 DESC
             LIMIT 5
     '''
-
-    with db.engine.connect() as conn:
-        scores_5day = conn.execute(text(scores_5day_sql)).fetchall()
+    scores_5day = get_data_from_query(sql=scores_5day_sql)
 
     return [DayScore(*row) for row in scores_5day]

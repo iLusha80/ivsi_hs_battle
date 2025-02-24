@@ -1,8 +1,5 @@
 from app import app, db
 from sqlalchemy import text
-from app.models import Hero, UnitType, Game
-
-from app.services.download_img.utils import read_json_file
 
 inserts_unit_types = """INSERT INTO unit_types (name, image_url) VALUES
 ('Смешанные', 'images/unit_types/all.png'),
