@@ -1,8 +1,8 @@
 <div class="row align-items-center">
-  <table class="table table-bordered text-center mytable" style="margin: 0 auto; border-spacing: 5px; font-size: 0.9rem;">
+  <table class="table table-bordered text-center mytable" style="margin: 0 auto; border-spacing: 5px; font-size: 0.8rem;">
     <thead>
         <tr>
-          <th scope="col">Игры</th>
+          <th scope="col">Игры (-)</th>
           <th scope="col">1 plc.</th>
           <th scope="col">2 plc.</th>
           <th scope="col">3 plc.</th>
@@ -20,7 +20,7 @@
       {% else %}
         <tr>
       {% endif %}
-        <td>{{ row.num_games }}</td>
+        <td>{{ row.num_games }} ({{ row.div_count }})</td>
         <td>{{ row.pl1 }}</td>
         <td>{{ row.pl2 }}</td>
         <td>{{ row.pl3 }}</td>

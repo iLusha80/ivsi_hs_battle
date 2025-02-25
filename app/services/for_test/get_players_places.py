@@ -16,6 +16,7 @@ class IndexStaticPlaceTableRow:
     pl7: int
     pl8: int
     avg_place: float
+    div_count: int
 
 @dataclass
 class PlayersStats:
@@ -57,6 +58,7 @@ def get_player_place_stats(num_games: Optional[int] = None, p: int = 1) -> Index
         , count(CASE WHEN g.player{p}_place = 7 THEN 1 END) AS pl7
         , count(CASE WHEN g.player{p}_place = 8 THEN 1 END) AS pl8
         , ROUND(avg(g.player{p}_place), 2)  				AS avg_place
+        , sum(g.player2_place) - sum(g.player1_place)       AS div_count
     FROM lim_game g
     """
 

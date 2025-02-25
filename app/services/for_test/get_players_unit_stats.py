@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional, List
+from typing import List
 
 from app.services.utils import get_data_from_query
 
@@ -13,6 +13,10 @@ class UnitStat:
     percent_1place: float
     count_top4: int
     percent_top4: float
+
+    def __post_init__(self):
+        self.percent_1place = round(self.percent_1place * 100)
+        self.percent_top4 = round(self.percent_top4 * 100)
 
 @dataclass
 class PlayerStats:
@@ -34,8 +38,8 @@ def get_player_unit_stats(p: int = 1) -> UnitStat:
     WITH cte AS (
         SELECT
             ut."name"																				AS unit_type_name
-            ,ROUND(avg(g.player{p}_place), 2)														AS avg_place
             ,count(*)																				AS count_games
+            ,ROUND(avg(g.player{p}_place), 2)														AS avg_place
             ,sum(CASE WHEN g.player{p}_place = 1  THEN 1 ELSE 0 END) 								AS count_1place
             ,(sum(CASE WHEN g.player{p}_place = 1 THEN 1 ELSE 0 END)::float)/(count(*)::float)		AS percent_1place
             ,sum(CASE WHEN g.player{p}_place <=4  THEN 1 ELSE 0 END) 								AS count_top4
@@ -47,14 +51,14 @@ def get_player_unit_stats(p: int = 1) -> UnitStat:
     )
     SELECT
         unit_type_name
-        ,avg_place
         ,count_games
+        ,avg_place
         ,count_1place
         ,ROUND(percent_1place::numeric, 2)	AS percent_1place
         ,count_top4
         ,ROUND(percent_top4::numeric, 2)	AS percent_top4
     FROM cte
-    ORDER BY 2;
+    ORDER BY 3;
     """
 
     sql_result = get_data_from_query(sql=sql)

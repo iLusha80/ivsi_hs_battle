@@ -16,6 +16,7 @@ class Config:
     POSTGRES_SCHEMA: str
     SQLALCHEMY_DATABASE_URI: str  # Вычисляется в load_config
     SQLALCHEMY_TRACK_MODIFICATIONS: bool = False
+    TELEGRAM_BOT_TOKEN: str = None
 
 def load_config() -> Config:
     load_dotenv()
@@ -36,5 +37,6 @@ def load_config() -> Config:
         POSTGRES_DB=postgres_db,
         POSTGRES_SCHEMA=postgres_schema,
         SQLALCHEMY_DATABASE_URI=f'postgresql://{postgres_user}:{postgres_password}@{postgres_host}:{postgres_port}/{postgres_db}?options=-csearch_path%3D{postgres_schema}',
-        SQLALCHEMY_TRACK_MODIFICATIONS=False
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+        TELEGRAM_BOT_TOKEN=os.environ.get('TELEGRAM_BOT_TOKEN')
     )

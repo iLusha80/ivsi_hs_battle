@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template
+from flask import Blueprint
 from flask import request, session, redirect
 
-from .. import config, db
-from ..models import Game, Hero, UnitType
+from .. import db
+from ..models import Game
+from app.services.tele_bot.bot import send_result_to_telegram
 
 add_game_bp = Blueprint('add_game', __name__)
 
@@ -31,6 +32,7 @@ def add_game():
         print("Game added successfully!")
         print(game)
         print('-'*66)
+        send_result_to_telegram(game)
     except Exception as e:
         print(f"Error adding game: {str(e)}")
 
