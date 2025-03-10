@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+from datetime import datetime
+
 from sqlalchemy import func
 
 from app import db
@@ -13,9 +15,18 @@ class TotalScore:
 
 
 
-def get_total_score():
+def get_total_score(start_data: str = '2024-01-01') -> TotalScore:
+    """
+
+    :param start_data:
+    :return:
+    """
+    start_date = datetime.strptime(start_data, '%Y-%m-%d')
+
     total_score = db.session.query(
         func.sum(Game.player1_place - Game.player2_place)
+    ).filter(
+        Game.timestamp >= start_date
     ).scalar() or 0
 
     if total_score > 0:
