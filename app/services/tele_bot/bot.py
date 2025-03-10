@@ -1,6 +1,7 @@
 import telebot
 
 from app import app
+from app.services.for_test.wins_players_stat import get_players_1x2_stats, Players1x2Stats
 from app.services.index.get_total_score import TotalScore, get_total_score
 from config import load_config
 
@@ -39,9 +40,13 @@ def send_result_to_telegram(game: Game, str_start_date: str = '2025-03-10', chat
     total_score: TotalScore = get_total_score()
     current_score: TotalScore = get_total_score(start_data=str_start_date)
 
+    total_st1x2: Players1x2Stats = get_players_1x2_stats()
+    current_st1x2: Players1x2Stats = get_players_1x2_stats(start_date=str_start_date)
+
     # если game None, то выбираем игру с максимальным id
     if game is None:
         game = Game.query.order_by(Game.id.desc()).first()
+
 
     message = (
         f"🏆 <b>Результат матча #{game.id}</b> 🏆\n"
@@ -50,8 +55,11 @@ def send_result_to_telegram(game: Game, str_start_date: str = '2025-03-10', chat
         f"{place_emojis[game.player1_place]} <b>{game.player1_place}</b>      🆚      {place_emojis[game.player2_place]} <b>{game.player2_place}</b>\n"
         f"<i>{game.player2_hero.name} | {game.player2_unit_type.name}</i>\n\n"
         f"📊 Текущая серия: {count_games}/30 ({count_games * 3.33}%)\n"
-        f'📊 Текущий счет:    <u>{current_score.txt_score}</u>\n\n'
-        f'📈 Общий счет:      <u>{total_score.txt_score}</u>'
+        f'📊 Текущий счет:    <u>{current_score.txt_score}</u>\n'
+        f'📈 Текущий 1x2:     {current_st1x2.player1_wins}-{current_st1x2.draw}-{current_st1x2.player2_wins} ({current_st1x2.diff_wins})\n\n'
+        f'📈 Общий счет:      <u>{total_score.txt_score}</u>\n'
+        f'📈 Общий 1x2:       {total_st1x2.player1_wins}-{total_st1x2.draw}-{total_st1x2.player2_wins} ({total_st1x2.diff_wins})'
+
     )
 
     try:
