@@ -1,18 +1,9 @@
 {% extends "base.html" %}
 
+<!--# {{ 12 / data.width }}"-->
+
 {% block content %}
-    {% set current_row = 0 %}
-    {% for data in data_list %}
-        {% if data.row != current_row %}
-            {% if current_row != 0 %}
-                </div>
-            {% endif %}
-            <div class="row g-4">
-            {% set current_row = data.row %}
-        {% endif %}
-        <div class="col-md-{{ 12 / data.width }}">
-            {% include 'components/statistic/main_window.html' %}
-        </div>
-    {% endfor %}
+    <div class="col-md-12">
+        {% include 'components/statistic/main_window.html' %}
     </div>
 {% endblock %}

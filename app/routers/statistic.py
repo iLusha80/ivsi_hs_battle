@@ -1,9 +1,9 @@
 import dataclasses
-import json
 from typing import Dict, Any
-import importlib
 
 from flask import Blueprint, render_template
+
+from app.services.for_stat.stats_avg_sly import generate_scl_sr_data_plot
 
 statistics_bp = Blueprint('statistics', __name__)
 
@@ -12,26 +12,15 @@ class DataStatBase:
     plot_name: str
     html_id: str
     json_plotly_data: Dict[str, Any]
-    width: int
+    width: int = 0
 
 @statistics_bp.route('/statistics')
 def statistics():
-    with open('app/static/data/statistic_config.json', 'r') as f:
-        config = json.load(f)
+    plot_name = 'Скользунберг'
+    json_plotly_data = generate_scl_sr_data_plot()
+    html_id = 'scl_sr'
+    data = DataStatBase(plot_name=plot_name, html_id=html_id, json_plotly_data=json_plotly_data)
 
-    data = []
-    for item in config:
-        module_name = item['module']
-        function_name = item['function']
-        plot_name = item['name']
-        html_id = item['id']
-        width = item['width']
+    print(json_plotly_data)
 
-        module = importlib.import_module(f'app.services.for_stat.{module_name}')
-        generate_plot = getattr(module, function_name)
-        plot_data = generate_plot()
-
-        data_item = DataStatBase(plot_name=plot_name, html_id=html_id, json_plotly_data=plot_data, width=width)
-        data.append(data_item)
-
-    return render_template('statistics.html', data_list=data)
+    return render_template('statistics.html', data=data)

@@ -42,21 +42,23 @@ def send_result_to_telegram(game: Game, str_start_date: str = '2025-02-25', chat
     if game is None:
         game = Game.query.order_by(Game.id.desc()).first()
 
-    message = (f"🏆 *Результат матча #{game.id}* 🏆\n"
-               f"🕒 _{game.timestamp.strftime('%d.%m.%Y %H:%M')}_\n\n"
-               f"_{game.player1_hero.name} | {game.player1_unit_type.name}_\n"
-               f"{place_emojis[game.player1_place]} *{game.player1_place}*      🆚      {place_emojis[game.player2_place]} *{game.player2_place}*\n"
-               f"_{game.player2_hero.name} | {game.player2_unit_type.name}_\n\n"
-               f"📊 Текущая серия: {count_games}/50 ({count_games * 2}%)\n")
-
+    message = (
+        f"🏆 <b>Результат матча #{game.id}</b> 🏆\n"
+        f"🕒 <i>{game.timestamp.strftime('%d.%m.%Y %H:%M')}</i>\n\n"
+        f"<i>{game.player1_hero.name} | {game.player1_unit_type.name}</i>\n"
+        f"{place_emojis[game.player1_place]} <b>{game.player1_place}</b>      🆚      {place_emojis[game.player2_place]} <b>{game.player2_place}</b>\n"
+        f"<i>{game.player2_hero.name} | {game.player2_unit_type.name}</i>\n\n"
+        f"📊 Текущая серия: {count_games}/50 ({count_games * 2}%)\n"
+        f'📊 Общий счет:      <u>{total_score.txt_score}</u>'
+    )
 
     try:
-        # Отправка сообщения
-        bot.send_message(chat_id, message, parse_mode='Markdown')
+        # Отправка сообщения с HTML-разметкой
+        bot.send_message(chat_id, message, parse_mode='HTML')
         print("Сообщение успешно отправлено")
     except Exception as e:
         print(f"Ошибка при отправке: {e}")
 
 
-# with app.app_context():
-#     send_result_to_telegram(None, chat_id=-4722900052)
+with app.app_context():
+    send_result_to_telegram(None, chat_id=-4722900052)

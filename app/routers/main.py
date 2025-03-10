@@ -13,7 +13,7 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/')
 def index():
-    games = db.session.query(Game).order_by(desc(Game.timestamp)).limit(10).all()
+    games = db.session.query(Game).order_by(desc(Game.timestamp)).limit(76).all()
     hero_list = Hero.query.all()
     unit_types = UnitType.query.all()
 
